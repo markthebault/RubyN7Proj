@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>New User</title>
+  <head>
+  
+
+  <body>
+    <h1>New User</h1>
+
+    <form method="post" action="/user/new" >
+      <label>User Name</label>
+      <input type="text" name="name" value="<%= @username %>" > <br />
+
+      <label>Email</label>
+      <input type="text" name="email" value="<%= @email %>">  <br />
+
+      <label>Password</label>
+      <input type="password" name="password"> <br />
+
+      <input type="submit" text="Create New User">
+    </form>
+
+  </body>
+<html>

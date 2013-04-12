@@ -1,9 +1,13 @@
 # encoding: utf-8
+require 'active_record'
+require_relative './db/database'
+
 require 'sinatra'
 require 'sinatra/reloader'
 require 'sinatra/respond_with'
 require 'sinatra/json'
 require_relative './authentication'
+require_relative './lib/model/user'
 
 use Authentication
 helpers AuthenticationHelpers
@@ -50,4 +54,40 @@ SHOW
     end
     format.json { json @resource }
   end
+end
+
+
+##Gestion d'un nouvel utilisateur
+get '/user/new' do
+  erb :'user/new'
+end
+
+post '/user/new' do
+  "Vous voulez enregister l'utilisateur #{params[:name]}"
+  
+  if not User.find_by_name(params[:name]).nil?
+    "User is existing, change the name"
+  else
+
+     u = User.new
+     u.name = params[:name]
+     u.email = params[:email]
+     u.password = params[:password] #passer au SHA1
+     u.save
+
+     redirect "/user/#{u.id}"
+  end
+end
+
+get '/user/:id' do
+  u = User.find_by_id(params[:id])
+  "<t1>User</t1><br>name:#{u.name}, password:#{u.password}, email:#{u.email}
+  <a href=\"/user/#{params[:id]}/edit\">Edit</a>"
+end
+
+get '/user/:id/edit' do
+  u = User.find_by_id(params[:id])
+  @username = u.name
+  @email = u.email
+  erb :'user/edit'
 end
