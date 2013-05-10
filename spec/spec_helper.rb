@@ -17,3 +17,7 @@ RSpec.configure do |config|
     end
   end
 end
+
+def app
+  Sinatra::Application
+end

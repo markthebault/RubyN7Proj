@@ -8,7 +8,7 @@
   <body>
     <h1>New User</h1>
 
-    <form method="post" action="/user/new" >
+    <form method="post" action="/user/<%= @id %>" >
       <label>User Name</label>
       <input type="text" name="name" value="<%= @username %>" > <br />
 
@@ -16,9 +16,15 @@
       <input type="text" name="email" value="<%= @email %>">  <br />
 
       <label>Password</label>
-      <input type="password" name="password"> <br />
+      <input type="password" name="password" value="<%= @password %>"> <br />
 
-      <input type="submit" text="Create New User">
+      <input type="hidden" name="_method" value="PUT"/>
+      <input type="submit"  value="Modifier">
+    </form>
+
+    <form method="post" action="/user/<%= @id %>" >
+      <input type="hidden" name="_method" value="DELETE"/>
+    <input type="submit" value="Supprimer">
     </form>
 
   </body>
