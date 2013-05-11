@@ -34,6 +34,10 @@ get '/' do
     Identifiez-vous pour accéder au reste de l'application
     </a>
   </p>
+  <p>
+    <a href="/discussions">Voir les discussions</a><br>
+    <a href="/users">Voir les utilisateurs</a>
+  </p>
 </div>
 <% end %>
 
