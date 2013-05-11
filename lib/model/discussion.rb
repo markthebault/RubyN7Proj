@@ -4,4 +4,5 @@ class Discussion < ActiveRecord::Base
 
 # validate that fiels are not empty
   validates_presence_of :title
+  validates_presence_of :content
 end

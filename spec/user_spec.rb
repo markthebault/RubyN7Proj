@@ -33,9 +33,14 @@ end
 #test insert new user
 describe "routes" do
   it "post /user/new" do
+    user = User.find_by_name("toto")
+    if user then user.destroy end
+  
     post '/user/new', { :name => "toto", :password => "tutu", :email => "tutu@free.fr" }
       last_response.should be_redirect
       User.find_by_name("toto").should_not be_nil 
+      
+      last_response.should be_redirect
   end
 
 #test get user new form
@@ -46,6 +51,9 @@ describe "routes" do
   
 #test drop user
   it "delete /user/:id" do
+    user = User.find_by_name("toto")
+    if user then user.destroy end
+  
     user = User.new
     user.name = "toto"
     user.password ="tutu"
@@ -54,18 +62,22 @@ describe "routes" do
 
     delete "/user/#{user.id}"
     User.find_by_id(user.id).should be_nil
+    
+    last_response.should be_redirect
   end
  
 
 #test modification of user
-  it "patch /user/:id" do
+  it "put /user/:id" do
     user = User.new
     user.name = "toto"
     user.password ="tutu"
     user.email = "gg@ff.fr"
     user.save
 
-    patch "/user/#{user.id}", {:password => "pass", :email => "dd@ff.fr"}
+    put "/user/#{user.id}", {:password => "pass", :email => "dd@ff.fr"}
     User.find_by_id(user.id).password.should == "pass"
+    
+    last_response.should be_redirect
   end
 end

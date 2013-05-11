@@ -8,6 +8,8 @@ require 'sinatra/respond_with'
 require 'sinatra/json'
 require_relative './authentication'
 require_relative './lib/model/user'
+require_relative './lib/model/discussion'
+require_relative './lib/model/comment'
 
 use Authentication
 helpers AuthenticationHelpers
