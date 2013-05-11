@@ -34,6 +34,8 @@ get '/' do
     Identifiez-vous pour accéder au reste de l'application
     </a>
   </p>
+</div>
+<% end %>
   <p>
     <ul>
     <li><a href="/discussions">Voir les discussions</a></li><br>
@@ -41,8 +43,6 @@ get '/' do
     <li><a href="/user/new">Creer un compte</a></li>
     </ul>
   </p>
-</div>
-<% end %>
 
 INDEX
 end
