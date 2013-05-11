@@ -29,6 +29,7 @@ module AuthenticationHelpers
       login, pass = http_basic_credentials
       halt 401 unless Credentials.valid?(login,pass)
       session['current_user'] = login
+      
     end
     unless current_user
       session['initial_request_path'] = request.path

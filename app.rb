@@ -35,8 +35,11 @@ get '/' do
     </a>
   </p>
   <p>
-    <a href="/discussions">Voir les discussions</a><br>
-    <a href="/users">Voir les utilisateurs</a>
+    <ul>
+    <li><a href="/discussions">Voir les discussions</a></li><br>
+    <li><a href="/users">Voir les utilisateurs</a></li><br>
+    <li><a href="/user/new">Creer un compte</a></li>
+    </ul>
   </p>
 </div>
 <% end %>
