@@ -76,5 +76,51 @@ describe "using routes" do
     
     last_response.should be_redirect
   end
+  
 
+end
+
+
+describe "when the asking doesn't exist" do
+  it "show error message for get inexisting discussion" do
+    d = Discussion.new
+    d.title = "Un super titre"
+    d.content = "un super contenu"
+    d.user_id = 1;
+    d.save
+    
+    id = d.id
+    d.destroy
+    
+    get "/discussion/#{id}"
+    last_response.body.should match /<error/
+  end
+  
+  it "show error message for delete inexisting discussion" do
+    d = Discussion.new
+    d.title = "Un super titre"
+    d.content = "un super contenu"
+    d.user_id = 1;
+    d.save
+    
+    id = d.id
+    d.destroy
+    
+    delete "/discussion/#{id}"
+    last_response.body.should match /<error/
+  end
+  
+  it "show error message for put inexisting discussion" do
+    d = Discussion.new
+    d.title = "Un super titre"
+    d.content = "un super contenu"
+    d.user_id = 1;
+    d.save
+    
+    id = d.id
+    d.destroy
+    
+    put "/discussion/#{id}", {:title => "newtitle", :content => "un content"}
+    last_response.body.should match /<error/
+  end
 end
